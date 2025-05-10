@@ -1,129 +1,114 @@
-<h1 align="center">alu-AirBnB</h1>
-<p align="center">An AirBnB clone.</p>
+# alu-AirBnB
+
+A simplified clone of the AirBnB platform.
 
 ---
 
-## Description :house:
+## 🌐 Project Overview
 
-HBnB is a complete web application, integrating database storage, a back-end API, and front-end interfacing in a clone of AirBnB. This is the first step towards building a full web application: an AirBnB clone. This first step consists of a custom command-line interface for data management, and the base classes for the storage of this data.
+This project is a basic clone of the AirBnB web application. It features:
 
+- A command-line interface (CLI) for managing data
+- Back-end logic with data persistence
+- A foundation for future front-end and API integration
 
-## Usage :computer:
+Currently, it focuses on building core classes and a console for basic operations such as creating, viewing, updating, and deleting objects.
 
-1. First clone this repository.
+---
 
-2. Once the repository is cloned locate the "console.py" file and run it as follows:
+## 🛠️ Getting Started
+
+### 1. Clone the Repository
+
+Use Git to clone this project to your local machine:
+
+```bash
+git clone https://github.com/yourusername/AirBnB_clone.git
 ```
-/AirBnB_clone$ ./console.py
+
+### 2. Run the Console
+
+Navigate into the project folder and start the console:
+
+```bash
+cd AirBnB_clone
+./console.py
 ```
-3. When this command is run the following prompt should appear:
-```
+
+You should now see the prompt:
+
+```bash
 (hbnb)
 ```
-4. This prompt designates you are in the "HBnB" console. There are a variety of commands available within the console program.
 
-##### Commands
-    * create - Creates an instance based on given class
+---
 
-    * destroy - Destroys an object based on class and UUID
+## 💻 Available Commands
 
-    * show - Shows an object based on class and UUID
+Here are the main commands you can use inside the (hbnb) console:
 
-    * all - Shows all objects the program has access to, or all objects of a given class
+| Command        | Description                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+| create         | Creates a new object instance                                               |
+| show           | Displays an object by class name and ID                                    |
+| destroy        | Deletes an object by class name and ID                                     |
+| all            | Lists all objects (or all objects of a given class)                        |
+| update         | Updates attributes of an object using class name and ID                    |
+| quit / EOF     | Exits the console                                                           |
 
-    * update - Updates existing attributes an object based on class name and UUID
+---
 
-    * quit - Exits the program (EOF will as well)
+## 🧠 Advanced Syntax
 
+You can also use an object-oriented style for commands:
 
-##### Alternative Syntax
-Users are able to issue a number of console command using an alternative syntax:
-
-	Usage: <class_name>.<command>([<id>[name_arg value_arg]|[kwargs]])
-Advanced syntax is implemented for the following commands: 
-
-    * all - Shows all objects the program has access to, or all objects of a given class
-
-	* count - Return number of object instances by class
-
-    * show - Shows an object based on class and UUID
-
-	* destroy - Destroys an object based on class and UUID
-
-    * update - Updates existing attributes an object based on class name and UUID
-
-<br>
-<br>
-<center> <h2>Examples</h2> </center>
-<h3>Primary Command Syntax</h3>
-
-###### Example 0: Create an object
-Usage: create <class_name>
+```bash
+<ClassName>.command(arguments)
 ```
+
+Examples:
+
+- `User.all()` — Lists all User objects
+- `User.show("id")` — Displays a User by ID
+- `User.destroy("id")` — Deletes a User by ID
+- `User.update("id", "attribute", "value")` — Updates one attribute
+- `User.update("id", {"attr1": "val1", "attr2": "val2"})` — Updates multiple attributes at once
+
+---
+
+## 🔍 Examples
+
+### Create an object
+
+```bash
 (hbnb) create BaseModel
+# Returns an ID like: 3aa5babc-efb6-4041-bfe9-3cc9727588f8
 ```
-```
-(hbnb) create BaseModel
-3aa5babc-efb6-4041-bfe9-3cc9727588f8
-(hbnb)                   
-```
-###### Example 1: Show an object
-Usage: show <class_name> <_id>
 
-```
+### Show an object
+
+```bash
 (hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
-[BaseModel] (3aa5babc-efb6-4041-bfe9-3cc9727588f8) {'id': '3aa5babc-efb6-4041-bfe9-3cc9727588f8', 'created_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96959), 
-'updated_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96971)}
-(hbnb)  
 ```
-###### Example 2: Destroy an object
-Usage: destroy <class_name> <_id>
-```
+
+### Destroy an object
+
+```bash
 (hbnb) destroy BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
-(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
-** no instance found **
-(hbnb)   
-```
-###### Example 3: Update an object
-Usage: update <class_name> <_id>
-```
-(hbnb) update BaseModel b405fc64-9724-498f-b405-e4071c3d857f first_name "person"
-(hbnb) show BaseModel b405fc64-9724-498f-b405-e4071c3d857f
-[BaseModel] (b405fc64-9724-498f-b405-e4071c3d857f) {'id': 'b405fc64-9724-498f-b405-e4071c3d857f', 'created_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729889), 
-'updated_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729907), 'first_name': 'person'}
-(hbnb)
-```
-<h3>Alternative Syntax</h3>
-
-###### Example 0: Show all User objects
-Usage: <class_name>.all()
-```
-(hbnb) User.all()
-["[User] (99f45908-1d17-46d1-9dd2-b7571128115b) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92071), 'id': '99f45908-1d17-46d1-9dd2-b7571128115b', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92056)}", "[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 
-###### Example 1: Destroy a User
-Usage: <class_name>.destroy(<_id>)
+### Update an object
+
+```bash
+(hbnb) update BaseModel <id> first_name "John"
 ```
-(hbnb) User.destroy("99f45908-1d17-46d1-9dd2-b7571128115b")
-(hbnb)
-(hbnb) User.all()
-(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+
+Or using advanced syntax:
+
+```bash
+(hbnb) BaseModel.update("<id>", {"first_name": "Jane", "age": 30})
 ```
-###### Example 2: Update User (by attribute)
-Usage: <class_name>.update(<_id>, <attribute_name>, <attribute_value>)
-```
-(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", name "Todd the Toad")
-(hbnb)
-(hbnb) User.all()
-(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'name': 'Todd the Toad', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
-```
-###### Example 3: Update User (by dictionary)
-Usage: <class_name>.update(<_id>, <dictionary>)
-```
-(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", {'name': 'Fred the Frog', 'age': 9})
-(hbnb)
-(hbnb) User.all()
-(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
-```
-<br>
+
+---
+
+This project is a foundation for a full-featured web application. As development continues, it will grow to include database integration, RESTful APIs, and a front-end interface.
